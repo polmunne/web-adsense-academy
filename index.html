@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adsense Academy · Curso de Google AdSense de Pol Munné</title>
+<meta name="description" content="Aprende a crear páginas web y monetizarlas con Google AdSense, desde cero y paso a paso. Más de 140 clases y mentorías semanales con Pol Munné.">
+<meta property="og:title" content="Adsense Academy · Curso de Google AdSense">
+<meta property="og:description" content="Crea páginas web y monetízalas con Google AdSense, desde cero y paso a paso.">
+<meta property="og:image" content="panel-adsense.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3CclipPath id='a'%3E%3Cpath fill-rule='evenodd' d='M37 0h26l37 100H72l-6-18H34l-6 18H0zM50 30l-9 30h18z'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23a)'%3E%3Crect width='50' height='50' fill='%23E53125'/%3E%3Crect x='50' width='50' height='50' fill='%235BA65F'/%3E%3Crect y='50' width='50' height='50' fill='%23F0BE3E'/%3E%3Crect x='50' y='50' width='50' height='50' fill='%235584EC'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --acento:#356CF0;--acento-2:#7DBEFF;
+    --grad:linear-gradient(120deg,var(--acento),var(--acento-2));
+    --rojo:#E53125;--verde:#5BA65F;--amarillo:#F0BE3E;--azul:#5584EC;
+    --fondo:#0A082F;--panel:#120F3D;--card:#18144A;
+    --tinta:#F5F6FF;--suave:#A9AED3;
+    --linea:rgba(255,255,255,.09);--linea-2:rgba(255,255,255,.17);
+    --ok:#5BA65F;
+    --fuente:"Montserrat",system-ui,-apple-system,sans-serif;
+    --curva:cubic-bezier(.16,.84,.32,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:110px}
+  body{font-family:var(--fuente);background:var(--fondo);color:var(--tinta);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(60% 40% at 50% -5%,rgba(53,108,240,.32),transparent 70%),
+               radial-gradient(40% 30% at 92% 100%,rgba(125,190,255,.1),transparent 70%)}
+  img{max-width:100%;height:auto;display:block}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  section{padding:80px 0}
+  .ceja{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--acento-2);margin-bottom:12px}
+  h1,h2,h3{line-height:1.12;letter-spacing:-.025em}
+  h2{font-size:clamp(27px,4.2vw,42px);font-weight:800;margin-bottom:14px}
+  .sub{color:var(--suave);font-size:17px;max-width:660px}
+  .centro{text-align:center}.centro .sub{margin:0 auto}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .google{white-space:nowrap}
+  .google b:nth-child(1){color:var(--azul)}.google b:nth-child(2){color:var(--rojo)}.google b:nth-child(3){color:var(--amarillo)}
+  .google b:nth-child(4){color:var(--azul)}.google b:nth-child(5){color:var(--verde)}.google b:nth-child(6){color:var(--rojo)}
+
+  /* ---------- aviso superior ---------- */
+  .aviso{background:linear-gradient(90deg,#E53125,#F0743E);color:#fff;font-size:13.5px;font-weight:700;text-align:center;padding:9px 16px;line-height:1.35}
+  .aviso b{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* ---------- cabecera ---------- */
+  header{position:sticky;top:0;z-index:30;background:rgba(10,8,47,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--linea)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+  .marca{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+  .marca svg{width:30px;height:30px}
+  header nav{display:flex;gap:26px;font-size:14px;font-weight:700;color:var(--suave)}
+  header nav a{text-decoration:none;transition:color .2s}header nav a:hover{color:var(--tinta)}
+  .btn-mini{font:800 14px var(--fuente);padding:10px 16px;border-radius:11px;border:0;background:var(--grad);color:#fff;cursor:pointer;white-space:nowrap}
+
+  /* ---------- botones ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:19px 30px;border-radius:14px;border:0;cursor:pointer;
+    font:800 17.5px/1.2 var(--fuente);color:#fff;background:var(--grad);text-decoration:none;transition:transform .25s var(--curva),filter .25s;
+    box-shadow:0 14px 40px -12px rgba(53,108,240,.8)}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+  .btn .tri{width:0;height:0;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
+  .nota{margin-top:12px;font-size:14px;color:var(--suave);font-weight:600}
+  .nota .punto{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rojo);margin-right:8px;box-shadow:0 0 0 4px rgba(229,49,37,.2);animation:latir 1.6s infinite}
+  @keyframes latir{50%{box-shadow:0 0 0 7px rgba(229,49,37,0)}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 30px;text-align:center}
+  .hero h1{font-size:clamp(32px,5.8vw,62px);font-weight:900;max-width:940px;margin:0 auto 20px}
+  .hero .sub{margin:0 auto 26px;font-size:clamp(16px,2.2vw,19.5px);max-width:700px}
+  .hero .sub b{color:var(--tinta)}
+  .urgencia{margin-top:6px}
+  .cierre{margin-top:18px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#FF8A7A}
+  .hero .reloj{margin:10px 0 0}
+  /* portátil: se ve cerrado desde arriba, la cámara baja y la tapa se abre */
+  .laptop{position:relative;max-width:860px;margin:6px auto 40px;perspective:2600px;perspective-origin:50% 0%}
+  .laptop .cuerpo{position:relative;transform-style:preserve-3d;transform-origin:50% 100%}
+  .laptop .tapa{position:relative;width:86%;margin:0 auto;transform-origin:50% 100%;transform-style:preserve-3d}
+  .laptop .frente{position:relative;padding:2.1% 2.1% 2.6%;background:linear-gradient(#2a2a31,#151519);border-radius:20px 20px 4px 4px;border:1px solid #44444e;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 30px 70px -20px rgba(53,108,240,.55)}
+  .laptop .frente::before{content:"";position:absolute;top:.8%;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#3d3d47;box-shadow:inset 0 0 0 1px #55556a}
+  .laptop .trasera{position:absolute;inset:0;border-radius:18px;display:grid;place-items:center;transform:rotateX(180deg);
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    background:radial-gradient(120% 90% at 30% 10%,#f4f5f8,#d3d6dc 45%,#aeb2ba);border:1px solid #c9ccd3;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+  .laptop .trasera svg{width:11%;height:auto;filter:drop-shadow(0 1px 0 rgba(255,255,255,.7))}
+  .laptop .pantalla{position:relative;aspect-ratio:1600/910;background:#05050c;border-radius:5px;overflow:hidden}
+  .laptop .pantalla::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 40%);pointer-events:none}
+  .laptop .pantalla img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .laptop .base{position:relative;width:94%;margin:0 auto;transform-origin:50% 0;height:clamp(12px,2.4vw,22px);background:linear-gradient(#f1f2f5,#c3c6cd 55%,#9a9da6);border-radius:3px 3px 18px 18px / 3px 3px 100% 100%;
+    box-shadow:0 26px 50px -18px rgba(53,108,240,.55)}
+  .laptop .base::before{content:"";position:absolute;top:0;left:50%;width:15%;height:42%;transform:translateX(-50%);background:linear-gradient(#a8abb3,#c9ccd2);border-radius:0 0 10px 10px}
+  /* 1) visto desde arriba con la tapa cerrada · 2) baja hasta verlo de frente · 3) se abre · 4) se enciende la pantalla */
+  .js .laptop .cuerpo{transform:translateY(-79%) scale(.58) rotateX(-89deg);transition:transform 1.6s cubic-bezier(.45,.05,.25,1) .1s}
+  .js .laptop .base{transform:scaleX(.895);transition:transform 1.6s cubic-bezier(.45,.05,.25,1) .1s}
+  .js .laptop.abierto .base{transform:none}
+  .js .laptop .tapa{transform:rotateX(-90deg);transition:transform 1.5s cubic-bezier(.3,.7,.3,1) .75s}
+  /* el botón y el contador siempre por encima del portátil mientras se mueve */
+  .hero .btn,.hero .urgencia{position:relative;z-index:3}
+  .laptop{z-index:1}
+  .js .laptop .pantalla img{opacity:0;transform:scale(1.03);transition:opacity .9s ease 2.1s,transform 1.4s ease 2.1s}
+  .js .laptop.abierto .cuerpo{transform:none}
+  .js .laptop.abierto .tapa{transform:rotateX(0)}
+  .js .laptop.abierto .pantalla img{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .js .laptop .cuerpo,.js .laptop .tapa,.js .laptop .base,.js .laptop .pantalla img{transform:none;opacity:1;transition:none}
+  }
+  .navegador{max-width:960px;margin:56px auto 0;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--linea-2);
+    box-shadow:0 40px 100px -30px rgba(53,108,240,.7);transform:perspective(1600px) rotateX(8deg);transform-origin:50% 0;transition:transform 1s var(--curva)}
+  .navegador.visto{transform:perspective(1600px) rotateX(0)}
+  .navegador .barra-nav{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#1E1B4B}
+  .navegador .barra-nav i{width:11px;height:11px;border-radius:50%;background:#FF5F57}.navegador .barra-nav i:nth-child(2){background:#FEBC2E}.navegador .barra-nav i:nth-child(3){background:#28C840}
+  .navegador .barra-nav span{flex:1;margin-left:10px;padding:5px 12px;border-radius:8px;background:rgba(255,255,255,.08);color:var(--suave);font-size:12px;font-weight:600;text-align:left}
+  .pie-foto{margin-top:14px;color:var(--suave);font-size:13px;font-weight:600}
+
+  /* cifras */
+  .cifras{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .cifra{background:var(--panel);border:1px solid var(--linea);border-radius:18px;padding:24px 18px;text-align:center}
+  .cifra b{display:block;font-size:clamp(23px,3vw,36px);font-weight:900;letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .cifra:nth-child(1) b{color:var(--amarillo)}.cifra:nth-child(2) b{color:var(--acento-2)}.cifra:nth-child(3) b{color:var(--verde)}.cifra:nth-child(4) b{color:#FF7A70}
+  .cifra span{color:var(--suave);font-size:14px;font-weight:600}
+
+  /* trustpilot */
+  .trustpilot{max-width:880px;margin:52px auto 0;display:grid;grid-template-columns:auto 1fr auto;gap:22px 28px;align-items:center;
+    background:#fff;color:#191919;border-radius:18px;padding:22px 28px;box-shadow:0 24px 60px -24px rgba(53,108,240,.55)}
+  .tp-logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .tp-logo svg{width:24px;height:24px}
+  .tp-cab p{color:#6B6B76;font-size:13px;font-weight:600;margin-top:4px;max-width:190px}
+  .tp-estrellas{display:flex;gap:3px}
+  .tp-estrellas i{width:22px;height:22px;background:#00B67A;display:grid;place-items:center}
+  .tp-estrellas svg{width:15px;height:15px}
+  .tp-resena p{font-weight:700;font-size:15.5px;margin-top:8px}
+  .tp-resena small{color:#6B6B76;font-size:12.5px;font-weight:600}
+  .tp-enlace{font-weight:800;font-size:14px;color:#00875A;text-decoration:none;white-space:nowrap}
+  .tp-enlace:hover{text-decoration:underline}
+  .trustpilot.widget{display:block;padding:22px 16px}
+
+  /* tarjetas */
+  .rejilla{display:grid;gap:18px;margin-top:44px}
+  .r3{grid-template-columns:repeat(3,1fr)}
+  .r2{grid-template-columns:repeat(2,1fr)}
+  .tarjeta{background:var(--panel);border:1px solid var(--linea);border-radius:20px;padding:28px;transition:transform .35s var(--curva),border-color .35s}
+  .tarjeta:hover{transform:translateY(-4px);border-color:var(--linea-2)}
+  .icono{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;font-size:22px}
+  .tarjeta:nth-child(1) .icono{background:rgba(229,49,37,.16)}.tarjeta:nth-child(2) .icono{background:rgba(91,166,95,.18)}.tarjeta:nth-child(3) .icono{background:rgba(85,132,236,.2)}.tarjeta:nth-child(4) .icono{background:rgba(240,190,62,.18)}
+  .titulo-pilares{max-width:900px;margin:0 auto 14px}
+  .pilares{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+  .pilar{position:relative;background:linear-gradient(180deg,#1A1650,var(--panel));border:1px solid rgba(53,108,240,.35);border-radius:18px;padding:30px 22px 26px;
+    transition:transform .35s var(--curva),border-color .35s,box-shadow .35s}
+  .pilar::before{content:"";position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:56px;height:4px;border-radius:0 0 4px 4px;background:var(--grad);box-shadow:0 0 16px rgba(53,108,240,.9)}
+  .pilar:hover{transform:translateY(-4px);border-color:rgba(125,190,255,.6);box-shadow:0 20px 50px -20px rgba(53,108,240,.7)}
+  .pilar .ico{width:30px;height:30px;color:var(--tinta);margin-bottom:26px}
+  .pilar p{font-size:15px;line-height:1.55;color:#D5D8F0;font-weight:600}
+  .pilar p b{color:var(--acento-2);font-weight:800}
+  .tarjeta h3{font-size:19.5px;margin-bottom:8px}
+  .tarjeta p{color:var(--suave);font-size:15.5px}
+  .etiqueta{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:7px;background:rgba(125,190,255,.12);color:var(--acento-2);margin-bottom:12px}
+
+  /* sobre mí */
+  .yo{display:grid;grid-template-columns:420px 1fr;gap:56px;align-items:center}
+  .yo .marco-foto{position:sticky;top:100px}
+  .yo .foto{border-radius:26px;aspect-ratio:4/5;object-fit:cover;object-position:35% 85%;width:100%;background:var(--card);
+    border:2px solid rgba(53,108,240,.7);box-shadow:0 0 0 6px rgba(53,108,240,.12),0 0 70px -6px rgba(53,108,240,.75)}
+  .pastilla{display:inline-block;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:9px 22px;border-radius:99px;
+    border:1.5px solid var(--acento);background:rgba(53,108,240,.12);box-shadow:0 0 22px -4px rgba(53,108,240,.8)}
+  .yo .nombre{font-size:clamp(34px,5.4vw,64px);white-space:nowrap;font-weight:900;line-height:.98;letter-spacing:-.035em;text-transform:uppercase;margin:20px 0 18px;
+    text-shadow:0 0 34px rgba(125,190,255,.35)}
+  .yo .titulo{display:flex;gap:10px;align-items:flex-start;font-weight:800;font-size:16.5px}
+  .yo .titulo svg{flex:none;width:24px;height:24px;margin-top:-1px}
+  .yo .destacado{color:var(--acento-2);font-weight:800;font-size:17px;margin-top:14px}
+  .yo p{color:#D5D8F0;font-size:16.5px;margin-top:16px;line-height:1.65}
+  .yo p b{color:var(--acento-2);font-weight:800}
+  .yo .btn{margin-top:30px}
+
+  /* temario */
+  .resumen{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+  .resumen span{font-size:14px;font-weight:800;padding:8px 14px;border-radius:99px;background:var(--panel);border:1px solid var(--linea-2)}
+  .modulos{max-width:820px;margin:40px auto 0;display:grid;gap:10px}
+  details{background:var(--panel);border:1px solid var(--linea);border-radius:16px;overflow:hidden;transition:border-color .3s}
+  details[open]{border-color:rgba(53,108,240,.55)}
+  summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 20px;font-weight:800;font-size:16.5px}
+  summary::-webkit-details-marker{display:none}
+  summary .n{flex:none;width:38px;height:38px;border-radius:11px;background:var(--card);border:1px solid var(--linea-2);display:grid;place-items:center;font-size:14px;color:var(--acento-2)}
+  summary .t{flex:1}
+  summary small{color:var(--suave);font-weight:700;font-size:13px;white-space:nowrap}
+  summary::after{content:"+";font-size:22px;font-weight:600;color:var(--suave);transition:transform .3s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details ol{list-style:none;padding:0 20px 20px 74px}
+  details li{color:var(--suave);font-size:15px;font-weight:600;display:flex;gap:10px;align-items:baseline;break-inside:avoid;padding:5px 0}
+  details li .rango{flex:none;min-width:96px;color:var(--acento-2);font-weight:800;font-size:13px;white-space:nowrap}
+  details .nota-mod{padding:0 20px 20px 74px;color:var(--suave);font-size:15px;font-weight:600}
+  details .nota-mod b{color:var(--tinta)}
+  .curso-extra{text-align:center;margin:44px 0 6px}
+  .curso-extra .etiqueta{background:rgba(240,190,62,.14);color:var(--amarillo)}
+  .curso-extra h3{font-size:clamp(22px,3vw,28px);font-weight:900}
+  .curso-extra p{color:var(--suave);font-size:15.5px;margin-top:6px}
+  details.bonus{border-color:rgba(240,190,62,.4);background:linear-gradient(180deg,rgba(240,190,62,.1),var(--panel))}
+  details.bonus .n{color:var(--amarillo)}
+
+  /* incluye */
+  .incluye{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  .pago-seguro{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px 14px;margin-top:30px;color:var(--suave);font-size:14.5px;font-weight:600;text-align:center}
+  .pago-seguro b{color:var(--tinta)}
+  .pago-seguro .candado{width:20px;height:20px;color:var(--ok)}
+  .pago-seguro .tarjetas{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+  .tarjeta-pago{width:46px;height:29px;border-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  .item{display:flex;gap:16px;background:var(--panel);border:1px solid var(--linea);border-radius:18px;padding:22px}
+  .item i{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--card);font-style:normal;font-size:20px}
+  .item b{display:block;font-size:16px;margin-bottom:3px}
+  .item span{color:var(--suave);font-size:14.5px}
+
+  /* objetivo */
+  .objetivo{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;background:linear-gradient(135deg,rgba(53,108,240,.22),rgba(18,15,61,.9));
+    border:1px solid rgba(53,108,240,.45);border-radius:28px;padding:clamp(28px,5vw,52px)}
+  .objetivo .meta{font-size:clamp(46px,8vw,86px);font-weight:900;letter-spacing:-.04em;line-height:1}
+  .objetivo .meta small{display:block;font-size:clamp(17px,2.2vw,22px);letter-spacing:-.01em;color:var(--acento-2);margin-top:10px}
+  .pasos{list-style:none;display:grid;gap:14px}
+  .pasos li{display:flex;gap:14px;align-items:flex-start;font-weight:600;color:var(--suave)}
+  .pasos li b{color:var(--tinta)}
+  .pasos li::before{content:"✓";flex:none;width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:900}
+  .letra{margin-top:18px;font-size:12.5px;color:var(--suave);opacity:.8}
+
+  /* testimonios */
+  .testi{border-radius:18px;overflow:hidden;background:var(--panel);border:1px solid var(--linea);text-align:left}
+  .testi .marco{position:relative;aspect-ratio:16/9;background:#000}
+  .testi .marco button{position:absolute;inset:0;border:0;cursor:pointer;background:center/cover no-repeat;display:grid;place-items:center}
+  .play{width:62px;height:62px;border-radius:50%;background:var(--grad);display:grid;place-items:center;box-shadow:0 0 0 9px rgba(255,255,255,.12);transition:transform .3s var(--curva)}
+  .play::before{content:"";margin-left:5px;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+  .testi button:hover .play{transform:scale(1.08)}
+  .testi iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .testi .pie{padding:15px 18px}
+  .testi b{display:block;font-size:16px}.testi small{color:var(--verde);font-size:14px;font-weight:700}
+  /* muro de capturas */
+  .muro-cab{margin-top:70px}
+  .muro-cab .lema{display:inline-flex;gap:8px;align-items:center;color:var(--acento-2);font-weight:700;font-size:16px;margin-top:4px}
+  .muro-cab .sub{margin-top:8px;font-size:15.5px}
+  .muro{position:relative;max-height:1150px;overflow:hidden;margin-top:36px;transition:max-height .8s var(--curva)}
+  .muro.abierto{max-height:none}
+  .muro::after{content:"";position:absolute;left:0;right:0;bottom:0;height:220px;background:linear-gradient(transparent,var(--fondo));pointer-events:none}
+  .muro.abierto::after{display:none}
+  .columnas{display:flex;gap:18px;align-items:flex-start}
+  .columnas .col{flex:1;min-width:0}
+  .captura{margin:0 0 18px;border-radius:14px;overflow:hidden;border:1px solid var(--linea-2);background:#000}
+  .captura img{width:100%;object-fit:cover;object-position:top}
+  .captura.vacia{display:grid;place-items:center;background:#F4F5FA;border-color:#fff}
+  .captura.vacia span{color:#9AA0BF;font-size:13px;font-weight:700}
+  .ver-mas{position:relative;z-index:1;margin-top:-30px;font:800 15px var(--fuente);color:var(--tinta);background:var(--panel);border:1px solid var(--linea-2);border-radius:12px;padding:13px 22px;cursor:pointer;transition:border-color .2s}
+  .ver-mas:hover{border-color:var(--acento-2)}
+  .ver-mas::after{content:" ↓";color:var(--acento-2)}
+
+  /* CTA final + cuenta atrás */
+  .final{background:var(--panel);border:1px solid var(--linea-2);border-radius:28px;padding:clamp(34px,6vw,64px) 24px;text-align:center;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;inset:-40% -10% auto;height:80%;background:radial-gradient(closest-side,rgba(53,108,240,.35),transparent);pointer-events:none}
+  .final>*{position:relative}
+  .final .sub{margin:0 auto}
+  .final .objetivo{background:none;border:0;border-radius:0;padding:0 clamp(0px,2vw,24px);text-align:left}
+  .final .separa{height:1px;background:linear-gradient(90deg,transparent,var(--linea-2),transparent);margin:40px 0 4px}
+  .reloj{display:flex;justify-content:center;gap:10px;margin:10px 0 30px}
+  .final .cierre{margin-top:24px}
+  .reloj div{min-width:76px;padding:12px 8px;border-radius:14px;background:var(--card);border:1px solid var(--linea-2)}
+  .reloj b{display:block;font-size:30px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .reloj small{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--suave)}
+  .sin-plazo .con-plazo{display:none !important}
+
+  footer{padding:44px 0 120px;border-top:1px solid var(--linea);color:var(--suave);font-size:13px;text-align:center}
+  footer nav{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px;margin:12px 0 16px}
+  footer p{max-width:780px;margin:0 auto;opacity:.75}
+
+  /* barra fija en móvil */
+  .barra{position:fixed;left:12px;right:12px;bottom:12px;z-index:25;display:none}
+  .barra .btn{width:100%;padding:16px;font-size:15.5px;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+
+  /* ---------- formulario ---------- */
+  .modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(5,4,24,.8);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s}
+  .modal.abierto{opacity:1;pointer-events:auto}
+  .caja{width:100%;max-width:460px;background:var(--panel);border:1px solid var(--linea-2);border-radius:24px;padding:30px 26px 26px;position:relative;
+    transform:translateY(16px) scale(.98);transition:transform .4s var(--curva)}
+  .modal.abierto .caja{transform:none}
+  .cerrar{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--linea-2);background:none;color:var(--suave);cursor:pointer;font-size:18px}
+  .caja h3{font-size:24px;font-weight:900;margin-bottom:6px;padding-right:30px}
+  .caja>p{color:var(--suave);font-size:14.5px;margin-bottom:20px}
+  .caja label{display:block;font-size:13px;font-weight:800;margin:14px 0 6px}
+  .campo{width:100%;background:var(--fondo);border:1px solid var(--linea-2);border-radius:12px;padding:14px 15px;font:600 16px var(--fuente);color:var(--tinta);transition:border-color .2s}
+  .campo:focus{outline:none;border-color:var(--acento)}
+  .campo::placeholder{color:#565C8F}
+  .caja label.consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;font-weight:500;line-height:1.45;color:var(--suave);margin-top:16px}
+  .consent input{margin-top:2px;accent-color:var(--acento);flex:none}
+  .error{color:#FF7A70;font-size:13.5px;font-weight:700;min-height:20px;margin-top:10px}
+  .caja .btn{width:100%;margin-top:6px;padding:17px}
+  .caja .seguro{text-align:center;font-size:12.5px;color:var(--suave);margin-top:12px;font-weight:600}
+
+  /* cookies */
+  .cookies{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;max-width:560px;margin:0 auto;display:none;gap:12px;align-items:center;flex-wrap:wrap;
+    background:rgba(18,15,61,.97);border:1px solid var(--linea-2);border-radius:16px;padding:14px 16px;font-size:13px;color:var(--suave)}
+  .cookies p{flex:1;min-width:220px}
+  .cookies button{font:700 13px var(--fuente);padding:9px 14px;border-radius:10px;cursor:pointer;border:1px solid var(--linea-2);background:none;color:var(--tinta)}
+  .cookies .si{background:var(--grad);border:0}
+
+  .js .revela{opacity:0;transform:translateY(24px);transition:opacity .8s var(--curva),transform .8s var(--curva)}
+  .js .revela.visto{opacity:1;transform:none}
+
+  @media (max-width:900px){
+    header nav{display:none}
+    .r3,.r2,.incluye{grid-template-columns:1fr}
+    .trustpilot{grid-template-columns:1fr;text-align:center;justify-items:center;gap:14px}
+    .tp-cab p{max-width:none}
+    .pilares{grid-template-columns:repeat(2,1fr)}
+    .cifras{grid-template-columns:repeat(2,1fr)}
+    .yo{grid-template-columns:1fr;gap:28px}.yo .marco-foto{position:static}.yo .foto{max-width:340px;margin:0 auto}
+    .objetivo{grid-template-columns:1fr;gap:26px}
+    section{padding:60px 0}
+  }
+  @media (max-width:560px){
+    .marca{font-size:15px}.marca svg{width:26px;height:26px}
+    .btn-mini{font-size:13px;padding:9px 12px}
+    .hero{padding-top:44px}
+    .btn{width:100%}
+    .cifra{padding:18px 12px}.cifra span{font-size:13px}
+    details ol{padding-left:20px}
+    details li{flex-direction:column;gap:1px}
+    details .nota-mod{padding-left:20px}
+    .columnas{gap:10px}.captura{margin-bottom:10px;border-radius:10px}
+    .muro{max-height:900px}
+    summary{padding:16px;gap:12px;font-size:15.5px}summary small{display:none}
+    .reloj{gap:6px}.reloj div{min-width:0;flex:1}.reloj b{font-size:24px}
+    .barra.visible{display:block}
+    .pilares{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="formaA"><path fill-rule="evenodd" d="M37 0h26l37 100H72l-6-18H34l-6 18H0zM50 30l-9 30h18z"/></clipPath>
+    <symbol id="logoA" viewBox="0 0 100 100"><g clip-path="url(#formaA)">
+      <rect width="50" height="50" fill="#E53125"/><rect x="50" width="50" height="50" fill="#5BA65F"/>
+      <rect y="50" width="50" height="50" fill="#F0BE3E"/><rect x="50" y="50" width="50" height="50" fill="#5584EC"/></g></symbol>
+  </defs>
+</svg>
+
+<div class="aviso">🚀 Plazas limitadas: solo buscamos 3 personas más<span class="con-plazo"> · Cerramos plazas en <b class="cuenta-texto">2d 14h 00m</b></span></div>
+
+<header>
+  <div class="wrap">
+    <a class="marca" href="#inicio"><svg><use href="#logoA"/></svg>Adsense Academy</a>
+    <nav>
+      <a href="#metodo">Método</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#temario">Temario</a>
+      <a href="#testimonios">Alumnos</a>
+    </nav>
+    <button class="btn-mini abrir-form">Ver clase gratis</button>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <span class="ceja">Curso de Google AdSense</span>
+      <h1>Aprende a generar ingresos mensuales con <span class="google"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span> <span class="grad">AdSense</span> monetizando páginas web</h1>
+      <p class="sub"><b> Genera tus primeros 3.000 € en menos de 90 días</b>, empezando desde cero y siguiendo mi paso a paso.</p>
+      <div class="laptop" id="laptop" aria-label="Panel real de Google AdSense de Pol Munné en un portátil">
+        <div class="cuerpo">
+          <div class="tapa">
+            <div class="frente"><div class="pantalla"><img src="panel-adsense.jpg" alt="Panel de Google AdSense con 14,83 mil € generados este mes" width="1600" height="910"></div></div>
+            <div class="trasera"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="manzana" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9ebef"/><stop offset=".5" stop-color="#a7abb3"/><stop offset="1" stop-color="#d9dce1"/></linearGradient></defs><path fill="url(#manzana)" stroke="#9ca0a8" stroke-width=".25" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></div>
+          </div>
+          <div class="base"></div>
+        </div>
+      </div>
+      <button class="btn abrir-form"><span class="tri"></span>Ver la clase gratuita</button>
+      <div class="urgencia">
+        <p class="nota"><span class="punto"></span>Disponible hasta encontrar 3 personas más</p>
+        <div class="con-plazo">
+          <p class="cierre">Cerramos plazas en</p>
+          <div class="reloj" aria-label="Tiempo hasta el cierre de plazas">
+            <div><b class="r-d">2</b><small>días</small></div>
+            <div><b class="r-h">14</b><small>horas</small></div>
+            <div><b class="r-m">00</b><small>min</small></div>
+            <div><b class="r-s">00</b><small>seg</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:30px;padding-bottom:36px">
+    <div class="wrap">
+      <div class="cifras revela">
+        <div class="cifra"><b>5 años</b><span>monetizando páginas web</span></div>
+        <div class="cifra"><b>+300</b><span>alumnos en la academia</span></div>
+        <div class="cifra"><b>+500.000 €</b><span>generados con AdSense</span></div>
+        <div class="cifra"><b>~20.000 €</b><span>al mes actualmente</span></div>
+      </div>
+
+      <!-- Opiniones de Trustpilot. Si en CONFIG.trustbox hay código del widget oficial, se muestra ese (se actualiza solo). -->
+      <div class="trustpilot revela" id="trustpilot">
+        <div class="tp-cab">
+          <span class="tp-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#00B67A" d="M12 2.5l2.7 6.6 7.1.5-5.4 4.6 1.7 6.9L12 17.4l-6.1 3.7 1.7-6.9L2.2 9.6l7.1-.5z"/></svg>Trustpilot</span>
+          <p>Lo que dicen los alumnos de Adsense Academy</p>
+        </div>
+        <div class="tp-resena">
+          <div class="tp-estrellas" aria-label="5 estrellas"><i><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2.5l2.7 6.6 7.1.5-5.4 4.6 1.7 6.9L12 17.4l-6.1 3.7 1.7-6.9L2.2 9.6l7.1-.5z"/></svg></i><i><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2.5l2.7 6.6 7.1.5-5.4 4.6 1.7 6.9L12 17.4l-6.1 3.7 1.7-6.9L2.2 9.6l7.1-.5z"/></svg></i><i><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2.5l2.7 6.6 7.1.5-5.4 4.6 1.7 6.9L12 17.4l-6.1 3.7 1.7-6.9L2.2 9.6l7.1-.5z"/></svg></i><i><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2.5l2.7 6.6 7.1.5-5.4 4.6 1.7 6.9L12 17.4l-6.1 3.7 1.7-6.9L2.2 9.6l7.1-.5z"/></svg></i><i><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 2.5l2.7 6.6 7.1.5-5.4 4.6 1.7 6.9L12 17.4l-6.1 3.7 1.7-6.9L2.2 9.6l7.1-.5z"/></svg></i></div>
+          <p>«Pol siempre ha creído en mí desde el momento en el que entré»</p>
+          <small>Alberto Martínez · opinión en Trustpilot</small>
+        </div>
+        <a class="tp-enlace" href="https://es.trustpilot.com/review/adsenseacademy.es" target="_blank" rel="noopener">Ver las opiniones en Trustpilot →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="metodo">
+    <div class="wrap">
+      <div class="centro revela">
+        <span class="ceja">Esto te interesa</span>
+        <h2 class="titulo-pilares">Esto es lo que vas a <span class="grad">aprender en Adsense Academy</span></h2>
+      </div>
+      <div class="pilares">
+        <div class="pilar revela"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M15.5 8.5l1 -1.8 1 1.8 1.8 1 -1.8 1 -1 1.8 -1 -1.8 -1.8 -1z"/></svg><p><b>Creación de páginas web con IA:</b> crea webs profesionales desde cero con WordPress, con la inteligencia artificial haciendo casi todo el trabajo por ti.</p></div>
+        <div class="pilar revela"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 9.2c-.5-.9-1.6-1.4-2.8-1.4-1.6 0-2.8.9-2.8 2.1 0 2.9 5.8 1.5 5.8 4.3 0 1.2-1.3 2.1-3 2.1-1.3 0-2.4-.6-2.9-1.5M12 6v1.8M12 16.2V18"/></svg><p><b>Monetización con Google AdSense:</b> te enseño a ser aceptado en Google AdSense para que tu web muestre anuncios y empiece a generar ingresos.</p></div>
+        <div class="pilar revela"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><p><b>Ingresos con tráfico:</b> distintas estrategias para atraer visitas a tus páginas web y convertirlas en ingresos cada día.</p></div>
+        <div class="pilar revela"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M9 8h7M9 11h5"/></svg><p><b>Ingresos con venta de infoproductos:</b> crea tus propios productos digitales con IA y véndelos desde tus páginas web.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi">
+    <div class="wrap yo revela">
+      <div class="marco-foto"><img class="foto" src="foto.jpg" alt="Pol Munné" loading="lazy"></div>
+      <div>
+        <span class="pastilla">¿Quién soy?</span>
+        <h2 class="nombre">Pol Munné</h2>
+        <p class="titulo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#logoA"/></svg>Especialista en monetización de páginas web con Google AdSense</p>
+        <p class="destacado">Fundador de Adsense Academy. Más conocido en redes como VortexYT.</p>
+        <p>Empecé con 17 años a crear páginas web y a monetizarlas con Google AdSense, y cada año me obsesioné más con hacerlo mejor.</p>
+        <p>Pero no te equivoques, esto no va de crear una web, llenarla de anuncios y esperar a que llegue el dinero. No funciona así.</p>
+        <p>Para que una web genere ingresos tienes que saber qué estructura acepta Google, cómo crear el contenido y, sobre todo, <b>cómo llevarle visitas de los países que mejor pagan.</b></p>
+        <p>En estos <b>5 años he generado más de 500.000 € con AdSense</b>, y hoy mis webs generan <b>unos 20.000 € al mes.</b></p>
+        <p>Todo ese método lo he convertido en Adsense Academy, donde ya somos <b>más de 300 alumnos</b> construyendo su propio negocio online paso a paso.</p>
+        <button class="btn abrir-form"><span class="tri"></span>Ver la clase gratuita</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="temario">
+    <div class="wrap">
+      <div class="centro revela">
+        <span class="ceja">Temario</span>
+        <h2>Todo lo que incluye el curso</h2>
+        <p class="sub">Un recorrido completo, ordenado para que avances paso a paso desde el primer día.</p>
+        <div class="resumen"><span>📚 10 módulos + curso Digital Publisher</span><span>🎬 +140 clases</span><span>📅 Mentorías cada semana</span><span>♾️ Acceso de por vida</span></div>
+      </div>
+      <div class="modulos" id="modulos"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="centro revela">
+        <span class="ceja">Qué incluye</span>
+        <h2>Todo para que no te quedes atascado</h2>
+      </div>
+      <div class="incluye">
+        <div class="item revela"><i>🎬</i><div><b>+140 clases grabadas</b><span>10 módulos y el curso Digital Publisher, del primer paso al escalado.</span></div></div>
+        <div class="item revela"><i>📅</i><div><b>Mentorías semanales</b><span>Una mentoría en directo cada semana. Todas quedan grabadas.</span></div></div>
+        <div class="item revela"><i>⏱️</i><div><b>Online y a tu ritmo</b><span>Acceso de por vida, con las actualizaciones incluidas.</span></div></div>
+        <div class="item revela"><i>💬</i><div><b>Ayuda uno a uno por WhatsApp</b><span>Te acompañamos personalmente en cada paso.</span></div></div>
+        <div class="item revela"><i>👥</i><div><b>Comunidad de WhatsApp</b><span>Comunidad privada de alumnos para resolver tus dudas.</span></div></div>
+        <div class="item revela"><i>🌱</i><div><b>Sin experiencia previa</b><span>Te lo explico todo desde cero, sin tecnicismos.</span></div></div>
+      </div>
+      <div class="pago-seguro revela">
+        <svg class="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span><b>Pago 100% seguro</b> · y la opción de pagar a plazos si lo prefieres</span>
+        <span class="tarjetas"><svg class="tarjeta-pago" viewBox="0 0 48 30" role="img" aria-label="Visa"><rect width="48" height="30" rx="5" fill="#fff"/><text x="24" y="20" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="900" font-style="italic" fill="#1A1F71" letter-spacing=".5">VISA</text></svg><svg class="tarjeta-pago" viewBox="0 0 48 30" role="img" aria-label="Mastercard"><rect width="48" height="30" rx="5" fill="#fff"/><circle cx="19.5" cy="15" r="8" fill="#EB001B"/><circle cx="28.5" cy="15" r="8" fill="#F79E1B"/><path d="M24 8.4a8 8 0 0 1 0 13.2 8 8 0 0 1 0-13.2z" fill="#FF5F00"/></svg><svg class="tarjeta-pago" viewBox="0 0 48 30" role="img" aria-label="Apple Pay"><rect width="48" height="30" rx="5" fill="#fff"/><g transform="translate(7 7.6) scale(.58)" fill="#000"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></g><text x="31" y="19.5" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#000">Pay</text></svg><svg class="tarjeta-pago" viewBox="0 0 48 30" role="img" aria-label="Google Pay"><rect width="48" height="30" rx="5" fill="#fff"/><text x="7" y="19.5" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700"><tspan fill="#4285F4">G</tspan></text><text x="31" y="19.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="600" fill="#5F6368">Pay</text></svg><svg class="tarjeta-pago" viewBox="0 0 48 30" role="img" aria-label="PayPal"><rect width="48" height="30" rx="5" fill="#fff"/><text x="24" y="19" text-anchor="middle" font-family="Verdana,Arial,Helvetica,sans-serif" font-size="9.5" font-weight="700" font-style="italic"><tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan></text></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios">
+    <div class="wrap">
+      <div class="centro revela">
+        <span class="ceja">Alumnos</span>
+        <h2>Lo que dicen nuestros alumnos</h2>
+      </div>
+      <div class="rejilla r2" id="videos"></div>
+      <div class="centro muro-cab revela">
+        <h2>No lo digo yo, lo dicen mis alumnos</h2>
+        <p class="lema">🏆 Conversaciones reales con alumnos de Adsense Academy</p>
+        <p class="sub">Algunos de los casos de éxito de la academia.</p>
+      </div>
+      <div class="muro" id="muro"><div class="columnas" id="capturas"></div></div>
+      <div class="centro"><button class="ver-mas" id="ver-mas" hidden>Ver más testimonios</button></div>
+      <p class="pie-foto centro" style="margin-top:16px">Conversaciones reales con alumnos. Los resultados dependen del trabajo de cada persona.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="final revela">
+        <div class="objetivo">
+          <div>
+            <span class="ceja">Nuestro objetivo contigo</span>
+            <div class="meta"><span class="grad">3.000 €</span><small>en menos de 90 días, desde cero</small></div>
+          </div>
+          <div>
+            <ul class="pasos">
+              <li><span><b>Creas tu web</b> con la estructura que Google AdSense acepta.</span></li>
+              <li><span><b>Te aceptan en AdSense</b> y tu web empieza a mostrar anuncios.</span></li>
+              <li><span><b>Le traes visitas</b> con las fuentes de tráfico del método.</span></li>
+              <li><span><b>Escalas</b> optimizando el RPM, sumando más webs y vendiendo infoproductos creados con IA en tus páginas web.</span></li>
+            </ul>
+            <p class="letra">Es el objetivo que nos marcamos con cada alumno, no una garantía: los resultados dependen del trabajo, la constancia y las circunstancias de cada persona.</p>
+          </div>
+        </div>
+        <div class="separa"></div>
+        <div class="con-plazo">
+          <p class="cierre">Cerramos plazas en</p>
+          <div class="reloj" aria-label="Tiempo hasta el cierre de plazas">
+            <div><b class="r-d">2</b><small>días</small></div>
+            <div><b class="r-h">14</b><small>horas</small></div>
+            <div><b class="r-m">00</b><small>min</small></div>
+            <div><b class="r-s">00</b><small>seg</small></div>
+          </div>
+        </div>
+        <button class="btn abrir-form"><span class="tri"></span>Ver la clase ahora</button>
+        <p class="nota"><span class="punto"></span>Disponible hasta encontrar 3 personas más</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="marca" href="#inicio" style="justify-content:center"><svg><use href="#logoA"/></svg>Adsense Academy</a>
+    <nav>
+      <a href="legal.html#aviso">Aviso legal</a>
+      <a href="legal.html#privacidad">Política de privacidad</a>
+      <a href="legal.html#cookies">Política de cookies</a>
+      <a href="mailto:pol@adsenseacademy.es">Contacto</a>
+    </nav>
+    <p>Adsense Academy es una formación independiente, no afiliada, patrocinada ni respaldada por Google LLC ni por Meta Platforms, Inc. Google AdSense es una marca registrada de Google LLC. Los resultados mostrados corresponden a casos concretos y no son una garantía de ingresos.</p>
+    <p style="margin-top:12px">© <span id="anio"></span> Munne Digital LLC · adsenseacademy.es</p>
+  </div>
+</footer>
+
+<div class="barra" id="barra"><button class="btn abrir-form"><span class="tri"></span>Ver la clase gratuita</button></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+  <div class="caja">
+    <button class="cerrar" id="cerrar" aria-label="Cerrar">×</button>
+    <h3 id="modal-titulo">Accede a la clase gratuita</h3>
+    <p>Déjanos tus datos y te llevamos directamente a la clase.</p>
+    <form id="form" novalidate>
+      <label for="f-nombre">Nombre</label>
+      <input class="campo" id="f-nombre" name="nombre" autocomplete="name" placeholder="Tu nombre">
+      <label for="f-email">Correo electrónico</label>
+      <input class="campo" id="f-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com">
+      <label for="f-tel">WhatsApp</label>
+      <input class="campo" id="f-tel" name="telefono" type="tel" autocomplete="tel" placeholder="+34 600 000 000">
+      <label class="consent"><input type="checkbox" id="f-consent"> <span>Acepto la <a href="legal.html#privacidad" target="_blank">política de privacidad</a> y que Adsense Academy me contacte por correo y WhatsApp.</span></label>
+      <div class="error" id="error"></div>
+      <button class="btn" type="submit"><span class="tri"></span>Ver la clase ahora</button>
+      <p class="seguro">🔒 Tus datos están seguros. No hacemos spam.</p>
+    </form>
+  </div>
+</div>
+
+<div class="cookies" id="cookies">
+  <p>Usamos cookies de medición (píxel de Meta) para saber qué anuncios funcionan. <a href="legal.html#cookies">Más info</a></p>
+  <button id="ck-no">Rechazar</button><button class="si" id="ck-si">Aceptar</button>
+</div>
+
+<script>
+/* =================== CONFIGURACIÓN =================== */
+const CONFIG = {
+  urlClase: "https://clase.adsenseacademy.es/",
+  ghlWebhook: "",                 // webhook de GoHighLevel (perfil España de la web). Vacío = no se envía.
+  pixelMeta: "1679831543552882",  // píxel de España
+  // Widget oficial de Trustpilot (TrustBox): pega aquí, entre las comillas invertidas, el código que te da
+  // Trustpilot en business.trustpilot.com → Integraciones → TrustBox. Vacío = se muestra la opinión fija.
+  trustbox: ``,
+  horasPlazo: 62,                 // "cerramos plazas en": 2 días y 14 horas desde la primera visita
+  prefijoTelefono: "34", digitosMovil: 9,
+  videos: [
+    {id: "gs7qyydmLMs", nombre: "Roger", detalle: "De 0 a 1.800 € en su segundo mes con AdSense"},
+    {id: "ufcFW2JRVWc", nombre: "Gerard", detalle: "De 0 a +3.000 € al mes con AdSense"}
+  ],
+  // Muro de testimonios. Para añadir uno: sube la captura a la carpeta y cambia un hueco {vacio: ...} por
+  // {img: "nombre-del-archivo.jpg", nombre: "Nombre del alumno"}. "recorte" (opcional) corta las capturas muy largas.
+  capturas: [
+    {img: "testimonio-santi.jpg", nombre: "Santi", recorte: "693/1080"},
+    {img: "testimonio-isac.jpg", nombre: "Isac"},
+    {img: "testimonio-jose.jpg", nombre: "José M"},
+    {img: "testimonio-eric.jpg", nombre: "Eric", recorte: "693/960"},
+    {img: "testimonio-gabriel.jpg", nombre: "Gabriel"},
+    {img: "testimonio-alvaro.jpg", nombre: "Álvaro"},
+    {img: "testimonio-gerard-puig.jpg", nombre: "Gerard Puig"},
+    {img: "testimonio-francisco.jpg", nombre: "Francisco"},
+    {img: "testimonio-max.jpg", nombre: "Max", recorte: "693/1240"},
+    {img: "testimonio-hugo.jpg", nombre: "Hugo", recorte: "924/1650"},
+    {img: "testimonio-roger.jpg", nombre: "Roger"},
+    {img: "testimonio-bauti.jpg", nombre: "Bauti", recorte: "924/1750"}
+    // Huecos en blanco ({vacio: "3/4"}) = capturas pendientes.
+  ],
+  // Temario agrupado por tramos. Cada módulo: [título, [[primera clase, última clase, qué se ve], ...]].
+  // Las clases se numeran desde 1 en cada módulo. Un módulo con "nota" en vez de tramos muestra solo ese texto.
+  temario: [
+    ["Bienvenida", [[1, 2, "Bienvenida y qué es Google AdSense"], [3, 4, "Qué necesitas para empezar, roadmap y mentalidad correcta"]]],
+    ["Fundamentos de Google AdSense", [[1, 4, "Cómo funciona el modelo de negocio, nuestra estrategia y AdSense por dentro"], [5, 6, "Métricas básicas, políticas y errores que debemos evitar"], [7, 11, "Cómo elegir un buen nicho: recomendables, a evitar, ejemplo práctico y PDF de ideas"], [12, 12, "Test de fundamentos de Google AdSense"]]],
+    ["Creación de páginas web", [[1, 6, "Estructura, dominio, hosting, DNS, SSL e instalación de WordPress"], [7, 11, "Configuración de WordPress, tema, plugins y diseño de la web"], [12, 19, "Categorías, menú, footer y páginas principales"], [20, 22, "Páginas legales: privacidad, cookies y aviso legal"], [23, 29, "Artículos 10/10 creados con IA: estructura, imágenes y enlaces"], [30, 35, "Sitemap, Search Console, indexación y Google Analytics"], [36, 39, "Adaptación móvil, auditoría completa y checklist antes de AdSense"]]],
+    ["Aprobación y configuración de Google AdSense", [[1, 3, "Cuándo está lista una web, políticas y análisis de webs que ya funcionan"], [4, 9, "Crear la cuenta, enviar la web a revisión, código, ads.txt y cookies"], [10, 14, "Motivos de rechazo, guía para ser aceptado y qué hacer tras un rechazo"], [15, 19, "Anuncios automáticos, dónde colocarlos y cómo leer el panel"], [20, 22, "Verificación de identidad, información fiscal y método de pago"]]],
+    ["La estrategia paso a paso", [[1, 2, "Visión general y orden correcto de ejecución"], [3, 6, "De la web al primer tráfico: contenido y solicitud de AdSense"], [7, 9, "Medir, optimizar lo que funciona y escalar"]]],
+    ["Cómo enviar tráfico", [[1, 1, "Introducción a las estrategias de tráfico"], [2, 7, "Tráfico social: YouTube Shorts, TikTok, Instagram y cuentas nicho"], [8, 8, "Tráfico SEO + viral"], [9, 11, "Tráfico de arbitraje y afiliados con influencers"], [12, 13, "Tráfico de pago con Meta Ads e ideas de vídeos virales"]]],
+    ["Escalado, optimización y seguridad", [[1, 2, "Amplía el negocio y protege tu cuenta de suspensiones"], [3, 5, "Aumenta tu RPM: plantillas y nichos con CPC alto"], [6, 6, "Plan de acción de mejora del negocio"]]],
+    ["Agencia web", [[1, 2, "Cómo crear tu agencia web"], [3, 5, "Vender webs monetizadas: dónde venderlas y cómo entregarlas"], [6, 9, "Vender servicios y mentorías, conseguir clientes y captar leads"]]],
+    ["Fiscalidad", [[1, 1, "Cómo declarar tus ingresos"]]],
+    ["Mentorías semanales", null, "<b>Cada semana hacemos una mentoría en directo</b> y queda grabada en este módulo para que puedas verla cuando quieras. Ya hay <b>más de 10 mentorías grabadas</b>, con más de 5 horas de contenido."]
+  ],
+  // Curso incluido: Digital Publisher
+  digitalPublisher: [
+    ["Fundamentos del negocio digital", [[1, 2, "Qué es Digital Publishing y cómo ganar dinero con infoproductos"], [3, 4, "Tipos de productos digitales y cómo elegir un nicho rentable"]]],
+    ["Creación de audiencia y tráfico orgánico", [[1, 3, "Comunidad, YouTube o Instagram y configuración del canal"], [4, 7, "Ideas virales, vídeos largos, Shorts, Reels y miniaturas con IA"], [8, 8, "Caso práctico: análisis de un canal de referencia"]]],
+    ["Creación de infoproductos con IA", [[1, 3, "Validar la idea y crear ebooks, plantillas y minicursos con IA"], [4, 5, "Portadas, precio y una oferta atractiva"]]],
+    ["Creación de la página web y sistema de ventas", [[1, 2, "Página web y landing page que convierte"], [3, 5, "Productos, Stripe, pagos y entregas automáticas"]]],
+    ["Ventas, optimización y escalado", [[1, 2, "Primeras ventas con tráfico orgánico y optimización"], [3, 5, "Follow Me Ads, Meta Ads y escalado del negocio"]]]
+  ]
+};
+/* ===================================================== */
+
+document.documentElement.classList.add("js");
+window.addEventListener("error", () => document.documentElement.classList.remove("js"));
+document.getElementById("anio").textContent = new Date().getFullYear();
+
+const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+const leer = (k) => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
+// Cookie compartida entre adsenseacademy.es y clase.adsenseacademy.es
+function ponerCookie(nombre, valor, dias) {
+  const dominio = location.hostname.endsWith("adsenseacademy.es") ? "; domain=.adsenseacademy.es" : "";
+  const seguro = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${nombre}=${encodeURIComponent(valor)}; max-age=${dias * 86400}; path=/; SameSite=Lax${seguro}${dominio}`;
+}
+function leerCookie(nombre) {
+  const m = document.cookie.match(new RegExp("(?:^|; )" + nombre + "=([^;]*)"));
+  return m ? decodeURIComponent(m[1]) : null;
+}
+
+/* ---------- temario ---------- */
+const cont = document.getElementById("modulos");
+const modulo = (num, titulo, clases, nota, extra) => {
+  const d = document.createElement("details");
+  d.className = "revela" + (extra ? " bonus" : "");
+  d.innerHTML = `<summary><span class="n"></span><span class="t"></span><small></small></summary>`;
+  d.querySelector(".n").textContent = String(num).padStart(2, "0");
+  d.querySelector(".t").textContent = titulo;
+  const total = clases ? clases[clases.length - 1][1] : 0;
+  d.querySelector("small").textContent = clases ? `${total} ${total === 1 ? "clase" : "clases"}` : "Cada semana";
+  if (clases) {
+    const ol = document.createElement("ol");
+    clases.forEach(([desde, hasta, texto]) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="rango"></span><span></span>`;
+      li.firstChild.textContent = desde === hasta ? `Clase ${desde}` : `Clases ${desde}–${hasta}`;
+      li.lastChild.textContent = texto;
+      ol.appendChild(li);
+    });
+    d.appendChild(ol);
+  } else {
+    const p = document.createElement("p");
+    p.className = "nota-mod";
+    p.innerHTML = nota;
+    d.appendChild(p);
+  }
+  cont.appendChild(d);
+};
+CONFIG.temario.forEach(([t, c, nota], i) => modulo(i + 1, `Módulo ${i + 1}: ${t}`, c, nota));
+const cab = document.createElement("div");
+cab.className = "curso-extra revela";
+cab.innerHTML = `<span class="etiqueta">Incluido</span><h3>Curso Digital Publisher</h3><p>Crea y vende tus propios infoproductos con IA.</p>`;
+cont.appendChild(cab);
+CONFIG.digitalPublisher.forEach(([t, c], i) => modulo(i + 1, `Bloque ${i + 1}: ${t}`, c, null, true));
+cont.firstElementChild.open = true;
+
+/* ---------- trustpilot: widget oficial si está configurado ---------- */
+if (CONFIG.trustbox.trim()) {
+  const tp = document.getElementById("trustpilot");
+  tp.className = "trustpilot widget revela";
+  tp.innerHTML = CONFIG.trustbox;
+  const s = document.createElement("script");
+  s.src = "https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+  s.async = true;
+  s.onload = () => tp.querySelectorAll(".trustpilot-widget").forEach(w => window.Trustpilot && Trustpilot.loadFromElement(w));
+  document.head.appendChild(s);
+}
+
+/* ---------- muro de testimonios ---------- */
+const capturas = document.getElementById("capturas");
+const figuras = CONFIG.capturas.map(t => {
+  const f = document.createElement("figure");
+  f.className = "captura" + (t.img ? "" : " vacia");
+  if (t.img) {
+    const img = new Image();
+    img.loading = "lazy";
+    img.src = t.img;
+    img.alt = `Testimonio de ${t.nombre}`;
+    if (t.recorte) img.style.aspectRatio = t.recorte;
+    f.appendChild(img);
+  } else {
+    f.style.aspectRatio = t.vacio;
+    f.innerHTML = "<span>Captura de testimonio</span>";
+  }
+  return f;
+});
+// Reparte las capturas por columnas en orden (1ª, 2ª, 3ª, 1ª...), así los huecos no se juntan en una sola columna.
+let columnasActuales = 0;
+function repartir() {
+  const n = innerWidth <= 560 ? 2 : 3;
+  if (n === columnasActuales) return;
+  columnasActuales = n;
+  const cols = Array.from({length: n}, () => { const c = document.createElement("div"); c.className = "col"; return c; });
+  figuras.forEach((f, i) => cols[i % n].appendChild(f));
+  capturas.replaceChildren(...cols);
+}
+repartir();
+const muro = document.getElementById("muro"), verMas = document.getElementById("ver-mas");
+// Se recalcula cada vez que carga una captura: si el muro es más alto que el límite, se corta y aparece "Ver más".
+let muroAbiertoAMano = false;
+function revisarMuro() {
+  if (muroAbiertoAMano) return;
+  const limite = parseFloat(getComputedStyle(muro).maxHeight) || Infinity;
+  const corta = capturas.scrollHeight > limite + 40;
+  muro.classList.toggle("abierto", !corta);
+  verMas.hidden = !corta;
+}
+capturas.querySelectorAll("img").forEach(img => img.addEventListener("load", revisarMuro));
+addEventListener("resize", () => { repartir(); revisarMuro(); });
+requestAnimationFrame(revisarMuro);
+verMas.onclick = () => { muroAbiertoAMano = true; muro.classList.add("abierto"); verMas.hidden = true; };
+
+/* ---------- testimonios en vídeo ---------- */
+const videos = document.getElementById("videos");
+CONFIG.videos.forEach(v => {
+  const el = document.createElement("div");
+  el.className = "testi revela";
+  el.innerHTML = `<div class="marco"><button style="background-image:url('https://i.ytimg.com/vi/${v.id}/hqdefault.jpg')" aria-label="Ver testimonio"><span class="play"></span></button></div><div class="pie"><b></b><small></small></div>`;
+  el.querySelector("b").textContent = v.nombre;
+  el.querySelector("small").textContent = v.detalle;
+  el.querySelector("button").onclick = function () {
+    this.parentNode.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+  };
+  videos.appendChild(el);
+});
+
+/* ---------- "cerramos plazas en": cuenta atrás personal ---------- */
+// Empieza en la primera visita y se guarda: si vuelve mañana, le queda un día menos.
+let cierre = Number(leerCookie("aa_cierre") || leer("aa_cierre"));
+if (!cierre) cierre = Date.now() + CONFIG.horasPlazo * 3600e3;
+ponerCookie("aa_cierre", cierre, 60);
+guardar("aa_cierre", cierre);
+const dos = n => String(n).padStart(2, "0");
+function pintarReloj() {
+  const resto = cierre - Date.now();
+  if (resto <= 0) { document.body.classList.add("sin-plazo"); return false; }
+  const s = Math.floor(resto / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+  const poner = (c, v) => document.querySelectorAll(c).forEach(e => e.textContent = v);
+  poner(".r-d", d); poner(".r-h", dos(h)); poner(".r-m", dos(m)); poner(".r-s", dos(s % 60));
+  document.querySelectorAll(".cuenta-texto").forEach(e => e.textContent = `${d}d ${dos(h)}h ${dos(m)}m ${dos(s % 60)}s`);
+  return true;
+}
+if (pintarReloj()) { const t = setInterval(() => pintarReloj() || clearInterval(t), 1000); }
+
+/* ---------- utm: se guardan y se pasan a la clase ---------- */
+const params = new URLSearchParams(location.search);
+const CLAVES_UTM = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid"];
+const utmEntrada = {};
+CLAVES_UTM.forEach(k => { if (params.get(k)) utmEntrada[k] = params.get(k); });
+if (Object.keys(utmEntrada).length) guardar("aa_utm", utmEntrada);
+const utm = leer("aa_utm") || {utm_source: "web", utm_medium: "organico", utm_campaign: "adsenseacademy.es"};
+function irALaClase() {
+  const url = new URL(CONFIG.urlClase);
+  Object.entries(utm).forEach(([k, v]) => url.searchParams.set(k, v));
+  location.href = url.toString();
+}
+
+/* ---------- píxel de Meta (solo con consentimiento) ---------- */
+let pixelListo = false;
+function cargarPixel() {
+  if (!CONFIG.pixelMeta || pixelListo) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq("init", CONFIG.pixelMeta);
+  fbq("track", "PageView");
+  pixelListo = true;
+}
+const ck = document.getElementById("cookies");
+if (CONFIG.pixelMeta) {
+  const decision = leer("aa_cookies");
+  if (decision === "si") cargarPixel();
+  else if (!decision) ck.style.display = "flex";
+}
+document.getElementById("ck-si").onclick = () => { guardar("aa_cookies", "si"); ck.style.display = "none"; cargarPixel(); };
+document.getElementById("ck-no").onclick = () => { guardar("aa_cookies", "no"); ck.style.display = "none"; };
+
+/* ---------- formulario ---------- */
+const modal = document.getElementById("modal");
+const form = document.getElementById("form");
+const error = document.getElementById("error");
+const yaRegistrado = () => leerCookie("aa_lead") || leer("aa_lead");
+
+document.querySelectorAll(".abrir-form").forEach(b => b.onclick = () => {
+  if (yaRegistrado()) return irALaClase();
+  modal.classList.add("abierto");
+  setTimeout(() => form.nombre.focus(), 300);
+});
+document.getElementById("cerrar").onclick = () => modal.classList.remove("abierto");
+modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("abierto"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") modal.classList.remove("abierto"); });
+
+function normalizarTelefono(t) {
+  const digitos = t.replace(/\D/g, "");
+  if (t.trim().startsWith("+")) return "+" + digitos;
+  if (digitos.startsWith("00")) return "+" + digitos.slice(2);
+  return digitos.length === CONFIG.digitosMovil ? `+${CONFIG.prefijoTelefono}${digitos}` : "+" + digitos;
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const nombre = form.nombre.value.trim(), email = form.email.value.trim(), tel = form.telefono.value.trim();
+  if (nombre.length < 2) return error.textContent = "Escribe tu nombre";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return error.textContent = "Revisa el correo, parece que no es válido";
+  if (tel.replace(/\D/g, "").length < 9) return error.textContent = "Escribe tu número completo";
+  if (!document.getElementById("f-consent").checked) return error.textContent = "Necesitamos que aceptes la política de privacidad";
+  error.textContent = "";
+
+  const telefono = normalizarTelefono(tel);
+  const lead = {nombre: nombre.split(" ")[0], nombreCompleto: nombre, email, telefono};
+  ponerCookie("aa_lead", JSON.stringify(lead), 30);   // la clase lo lee y no vuelve a pedir los datos
+  guardar("aa_lead", lead);
+
+  if (pixelListo) {
+    const [fn, ...ln] = nombre.toLowerCase().split(/\s+/);
+    fbq("init", CONFIG.pixelMeta, {em: email.toLowerCase(), ph: telefono.replace(/\D/g, ""), fn, ln: ln.join(" "), country: "es"});
+    fbq("track", "Lead");
+  }
+  if (CONFIG.ghlWebhook) {
+    const [n, ...ap] = nombre.split(/\s+/);
+    fetch(CONFIG.ghlWebhook, {method: "POST", headers: {"Content-Type": "application/json"}, keepalive: true,
+      body: JSON.stringify({evento: "lead_web", nombre: n, apellido: ap.join(" "), email, telefono, pais: "España",
+        pagina: location.href.split("?")[0], fecha: new Date().toISOString(),
+        utm_source: "", utm_medium: "", utm_campaign: "", utm_content: "", utm_term: "", fbclid: "", ...utm})}).catch(() => {});
+  }
+  form.querySelector("button[type=submit]").textContent = "Abriendo la clase…";
+  setTimeout(irALaClase, 400);
+});
+
+/* ---------- portátil: espera a que bajen hasta él y entonces se acerca y se abre ---------- */
+const laptop = document.getElementById("laptop");
+if (laptop) {
+  const comprobarLaptop = () => {
+    if (scrollY < 40) return;                          // aún no han deslizado
+    const r = laptop.getBoundingClientRect();
+    if (r.top < innerHeight * 0.55 && r.bottom > 0) {  // el portátil ya está bien a la vista
+      laptop.classList.add("abierto");
+      removeEventListener("scroll", comprobarLaptop);
+    }
+  };
+  addEventListener("scroll", comprobarLaptop, {passive: true});
+}
+
+/* ---------- cifras que suben como un contador al llegar a ellas ---------- */
+// Lee el texto de cada cifra (p. ej. "+500.000 €"), cuenta desde 0 y termina en el texto original.
+const cifras = [...document.querySelectorAll(".cifra b")].map(el => {
+  const m = el.textContent.match(/^(\D*)([\d.]+)(.*)$/);
+  if (!m) return null;
+  const final = el.textContent, numero = Number(m[2].replace(/\./g, ""));
+  el.textContent = m[1] + "0" + m[3];
+  return {el, final, antes: m[1], despues: m[3], numero};
+}).filter(Boolean);
+function contar() {
+  const inicio = performance.now(), dura = 1800;
+  const paso = ahora => {
+    const t = Math.min((ahora - inicio) / dura, 1), suave = 1 - Math.pow(1 - t, 3);
+    cifras.forEach(c => {
+      c.el.textContent = t === 1 ? c.final : c.antes + Math.round(c.numero * suave).toLocaleString("es-ES", {useGrouping: "always"}) + c.despues;
+    });
+    if (t < 1) requestAnimationFrame(paso);
+  };
+  requestAnimationFrame(paso);
+}
+const bloqueCifras = document.querySelector(".cifras");
+if (bloqueCifras && cifras.length) {
+  const obsCifras = new IntersectionObserver(es => { if (es[0].isIntersecting) { contar(); obsCifras.disconnect(); } }, {threshold: .4});
+  obsCifras.observe(bloqueCifras);
+}
+
+/* ---------- barra móvil y animaciones ---------- */
+const barra = document.getElementById("barra");
+addEventListener("scroll", () => barra.classList.toggle("visible", scrollY > 600 && !modal.classList.contains("abierto")), {passive: true});
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visto"); obs.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll(".revela").forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
