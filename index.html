@@ -598,8 +598,14 @@ const CONFIG = {
     ["Chile","cl","56",9],["Ecuador","ec","593",9],["Venezuela","ve","58",10],["Guatemala","gt","502",8],["Bolivia","bo","591",8],
     ["Rep. Dominicana","do","1",10],["Honduras","hn","504",8],["Paraguay","py","595",9],["El Salvador","sv","503",8],
     ["Nicaragua","ni","505",8],["Costa Rica","cr","506",8],["Panamá","pa","507",8],["Uruguay","uy","598",8],
-    ["Puerto Rico","pr","1",10],["Estados Unidos","us","1",10]
+    ["Puerto Rico","pr","1",10],["Estados Unidos","us","1",10],["Otro país","xx","",0]
   ],
+  // "Otro país": escriben el número con prefijo. +1 y +5x (América) → LATAM; el resto (Europa, Emiratos…) → España.
+  prefijosConocidos: {"33":["Francia","fr"],"31":["Países Bajos","nl"],"32":["Bélgica","be"],"49":["Alemania","de"],"41":["Suiza","ch"],
+    "44":["Reino Unido","gb"],"39":["Italia","it"],"351":["Portugal","pt"],"353":["Irlanda","ie"],"43":["Austria","at"],"45":["Dinamarca","dk"],
+    "46":["Suecia","se"],"47":["Noruega","no"],"48":["Polonia","pl"],"30":["Grecia","gr"],"376":["Andorra","ad"],"352":["Luxemburgo","lu"],
+    "971":["Emiratos Árabes","ae"],"974":["Catar","qa"],"966":["Arabia Saudí","sa"],"61":["Australia","au"],"64":["Nueva Zelanda","nz"],
+    "55":["Brasil","br"],"1":["Estados Unidos / Canadá","us"]},
   videos: [
     {id: "gs7qyydmLMs", nombre: "Roger", detalle: "De 0 a 1.800 € en su segundo mes con AdSense"},
     {id: "ufcFW2JRVWc", nombre: "Gerard", detalle: "De 0 a +3.000 € al mes con AdSense"}
@@ -796,7 +802,7 @@ if (Object.keys(utmEntrada).length) guardar("aa_utm", utmEntrada);
 const utm = leer("aa_utm") || {utm_source: "web", utm_medium: "organico", utm_campaign: "adsenseacademy.es"};
 function irALaClase() {
   const registrado = (() => { try { return JSON.parse(leerCookie("aa_lead") || "null") || leer("aa_lead"); } catch (e) { return leer("aa_lead"); } })();
-  const latam = registrado && registrado.codigoPais && registrado.codigoPais !== "es";
+  const latam = registrado && (registrado.mercado ? registrado.mercado === "latam" : registrado.codigoPais && registrado.codigoPais !== "es");
   const url = new URL(latam ? CONFIG.urlClaseLatam : CONFIG.urlClase);
   Object.entries(utm).forEach(([k, v]) => url.searchParams.set(k, v));
   location.href = url.toString();
@@ -849,6 +855,20 @@ CONFIG.paises.forEach(([n, , pre], i) => selPais.add(new Option(pre ? `${n} +${p
   selPais.value = Math.max(0, CONFIG.paises.findIndex(p => p[1] === (porZona[zona] || "es")));
 })();
 const paisElegido = () => CONFIG.paises[selPais.value];
+const telInput = document.getElementById("f-tel");
+selPais.addEventListener("change", () => {
+  telInput.placeholder = paisElegido()[1] === "xx" ? "Con prefijo: +33 6 12 34 56 78" : "Tu número";
+});
+// Para "Otro país": deduce país y mercado a partir del prefijo
+function datosPorPrefijo(telefono) {
+  const d = telefono.replace(/\D/g, "");
+  const conocidos = {...CONFIG.prefijosConocidos};
+  CONFIG.paises.forEach(([n, c, p]) => { if (p && p !== "1") conocidos[p] = [n, c]; });
+  const pre = ["3","2","1"].map(n => d.slice(0, +n)).find(p => conocidos[p]);
+  const [nombre, codigo] = pre ? conocidos[pre] : ["Otro país", ""];
+  const mercado = /^(1|5)/.test(d) ? "latam" : "espana";
+  return {pais: nombre, codigoPais: codigo, mercado};
+}
 
 function normalizarTelefono(t) {
   const [, , pre, dig] = paisElegido();
@@ -864,18 +884,22 @@ form.addEventListener("submit", e => {
   if (nombre.length < 2) return error.textContent = "Escribe tu nombre";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return error.textContent = "Revisa el correo, parece que no es válido";
   if (tel.replace(/\D/g, "").length < 7) return error.textContent = "Escribe tu número completo";
+  if (paisElegido()[1] === "xx" && !/^\s*(\+|00)/.test(tel)) return error.textContent = "Escribe tu número con el prefijo de tu país, por ejemplo +33…";
   if (!document.getElementById("f-consent").checked) return error.textContent = "Necesitamos que aceptes la política de privacidad";
   error.textContent = "";
 
   const telefono = normalizarTelefono(tel);
-  const [paisNombre, codigoPais] = paisElegido();
-  const lead = {nombre: nombre.split(" ")[0], nombreCompleto: nombre, email, telefono, pais: paisNombre, codigoPais};
+  const [paisNombre, codigoElegido] = paisElegido();
+  const destino = codigoElegido === "xx" ? datosPorPrefijo(telefono)
+    : {pais: paisNombre, codigoPais: codigoElegido, mercado: codigoElegido === "es" ? "espana" : "latam"};
+  const codigoPais = destino.codigoPais;
+  const lead = {nombre: nombre.split(" ")[0], nombreCompleto: nombre, email, telefono, ...destino};
   ponerCookie("aa_lead", JSON.stringify(lead), 30);   // la clase lo lee y no vuelve a pedir los datos
   guardar("aa_lead", lead);
 
   if (pixelListo) {
     const [fn, ...ln] = nombre.toLowerCase().split(/\s+/);
-    fbq("init", CONFIG.pixelMeta, {em: email.toLowerCase(), ph: telefono.replace(/\D/g, ""), fn, ln: ln.join(" "), country: codigoPais});
+    fbq("init", CONFIG.pixelMeta, {em: email.toLowerCase(), ph: telefono.replace(/\D/g, ""), fn, ln: ln.join(" "), ...(codigoPais ? {country: codigoPais} : {})});
     fbq("track", "Lead");
   }
   if (CONFIG.ghlWebhook) {
