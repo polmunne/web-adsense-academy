@@ -285,6 +285,10 @@
   .campo{width:100%;background:var(--fondo);border:1px solid var(--linea-2);border-radius:12px;padding:14px 15px;font:600 16px var(--fuente);color:var(--tinta);transition:border-color .2s}
   .campo:focus{outline:none;border-color:var(--acento)}
   .campo::placeholder{color:#565C8F}
+  .tel-fila{display:flex;gap:8px}
+  .tel-fila select{flex:none;width:auto;max-width:48%;cursor:pointer}
+  .tel-fila select option{background:var(--panel);color:var(--tinta)}
+  .tel-fila input{flex:1;min-width:0}
   .caja label.consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;font-weight:500;line-height:1.45;color:var(--suave);margin-top:16px}
   .consent input{margin-top:2px;accent-color:var(--acento);flex:none}
   .error{color:#FF7A70;font-size:13.5px;font-weight:700;min-height:20px;margin-top:10px}
@@ -434,7 +438,7 @@
         <span class="pastilla">¿Quién soy?</span>
         <h2 class="nombre">Pol Munné</h2>
         <p class="titulo"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#logoA"/></svg>Especialista en monetización de páginas web con Google AdSense</p>
-        <p class="destacado">Fundador de Adsense Academy. Más conocido en redes como Vortex Webmaster.</p>
+        <p class="destacado">Fundador de Adsense Academy. Más conocido en redes como VortexYT.</p>
         <p>Empecé con 17 años a crear páginas web y a monetizarlas con Google AdSense, y cada año me obsesioné más con hacerlo mejor.</p>
         <p>Pero no te equivoques, esto no va de crear una web, llenarla de anuncios y esperar a que llegue el dinero. No funciona así.</p>
         <p>Para que una web genere ingresos tienes que saber qué estructura acepta Google, cómo crear el contenido y, sobre todo, <b>cómo llevarle visitas de los países que mejor pagan.</b></p>
@@ -559,7 +563,10 @@
       <label for="f-email">Correo electrónico</label>
       <input class="campo" id="f-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com">
       <label for="f-tel">WhatsApp</label>
-      <input class="campo" id="f-tel" name="telefono" type="tel" autocomplete="tel" placeholder="+34 600 000 000">
+      <div class="tel-fila">
+        <select class="campo" id="f-pais" aria-label="País"></select>
+        <input class="campo" id="f-tel" name="telefono" type="tel" autocomplete="tel" placeholder="Tu número">
+      </div>
       <label class="consent"><input type="checkbox" id="f-consent"> <span>Acepto la <a href="legal.html#privacidad" target="_blank">política de privacidad</a> y que Adsense Academy me contacte por correo y WhatsApp.</span></label>
       <div class="error" id="error"></div>
       <button class="btn" type="submit"><span class="tri"></span>Ver la clase ahora</button>
@@ -576,14 +583,23 @@
 <script>
 /* =================== CONFIGURACIÓN =================== */
 const CONFIG = {
-  urlClase: "https://clase.adsenseacademy.es/",
+  urlClase: "https://clase.adsenseacademy.es/",        // España (con setter)
+  urlClaseLatam: "https://latam.adsenseacademy.es/",   // LATAM (venta directa)
   ghlWebhook: "",                 // webhook de GoHighLevel (perfil España de la web). Vacío = no se envía.
   pixelMeta: "1679831543552882",  // píxel de España
   // Widget oficial de Trustpilot (TrustBox): pega aquí, entre las comillas invertidas, el código que te da
   // Trustpilot en business.trustpilot.com → Integraciones → TrustBox. Vacío = se muestra la opinión fija.
   trustbox: ``,
   horasPlazo: 62,                 // "cerramos plazas en": 2 días y 14 horas desde la primera visita
-  prefijoTelefono: "34", digitosMovil: 9,
+  // País del WhatsApp: decide a qué clase va. España → clase de España; el resto (también EE. UU.) → clase de LATAM.
+  // [nombre, código, prefijo, cifras del móvil]. Se preselecciona por la zona horaria del visitante.
+  paises: [
+    ["España","es","34",9],["México","mx","52",10],["Colombia","co","57",10],["Argentina","ar","54",10],["Perú","pe","51",9],
+    ["Chile","cl","56",9],["Ecuador","ec","593",9],["Venezuela","ve","58",10],["Guatemala","gt","502",8],["Bolivia","bo","591",8],
+    ["Rep. Dominicana","do","1",10],["Honduras","hn","504",8],["Paraguay","py","595",9],["El Salvador","sv","503",8],
+    ["Nicaragua","ni","505",8],["Costa Rica","cr","506",8],["Panamá","pa","507",8],["Uruguay","uy","598",8],
+    ["Puerto Rico","pr","1",10],["Estados Unidos","us","1",10]
+  ],
   videos: [
     {id: "gs7qyydmLMs", nombre: "Roger", detalle: "De 0 a 1.800 € en su segundo mes con AdSense"},
     {id: "ufcFW2JRVWc", nombre: "Gerard", detalle: "De 0 a +3.000 € al mes con AdSense"}
@@ -779,7 +795,9 @@ CLAVES_UTM.forEach(k => { if (params.get(k)) utmEntrada[k] = params.get(k); });
 if (Object.keys(utmEntrada).length) guardar("aa_utm", utmEntrada);
 const utm = leer("aa_utm") || {utm_source: "web", utm_medium: "organico", utm_campaign: "adsenseacademy.es"};
 function irALaClase() {
-  const url = new URL(CONFIG.urlClase);
+  const registrado = (() => { try { return JSON.parse(leerCookie("aa_lead") || "null") || leer("aa_lead"); } catch (e) { return leer("aa_lead"); } })();
+  const latam = registrado && registrado.codigoPais && registrado.codigoPais !== "es";
+  const url = new URL(latam ? CONFIG.urlClaseLatam : CONFIG.urlClase);
   Object.entries(utm).forEach(([k, v]) => url.searchParams.set(k, v));
   location.href = url.toString();
 }
@@ -819,11 +837,25 @@ document.getElementById("cerrar").onclick = () => modal.classList.remove("abiert
 modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("abierto"); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") modal.classList.remove("abierto"); });
 
+/* selector de país */
+const selPais = document.getElementById("f-pais");
+CONFIG.paises.forEach(([n, , pre], i) => selPais.add(new Option(pre ? `${n} +${pre}` : n, i)));
+(() => {
+  const zona = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").split("/").pop();
+  const porZona = {Madrid:"es",Canary:"es",Ceuta:"es",Mexico_City:"mx",Cancun:"mx",Monterrey:"mx",Merida:"mx",Chihuahua:"mx",Tijuana:"mx",
+    Hermosillo:"mx",Mazatlan:"mx",Matamoros:"mx",Bogota:"co",Buenos_Aires:"ar",Cordoba:"ar",Mendoza:"ar",Lima:"pe",Santiago:"cl",
+    Guayaquil:"ec",Caracas:"ve",Guatemala:"gt",La_Paz:"bo",Santo_Domingo:"do",Tegucigalpa:"hn",Asuncion:"py",El_Salvador:"sv",
+    Managua:"ni",Costa_Rica:"cr",Panama:"pa",Montevideo:"uy",Puerto_Rico:"pr"};
+  selPais.value = Math.max(0, CONFIG.paises.findIndex(p => p[1] === (porZona[zona] || "es")));
+})();
+const paisElegido = () => CONFIG.paises[selPais.value];
+
 function normalizarTelefono(t) {
+  const [, , pre, dig] = paisElegido();
   const digitos = t.replace(/\D/g, "");
   if (t.trim().startsWith("+")) return "+" + digitos;
   if (digitos.startsWith("00")) return "+" + digitos.slice(2);
-  return digitos.length === CONFIG.digitosMovil ? `+${CONFIG.prefijoTelefono}${digitos}` : "+" + digitos;
+  return digitos.startsWith(pre) && digitos.length > dig ? "+" + digitos : `+${pre}${digitos.replace(/^0+/, "")}`;
 }
 
 form.addEventListener("submit", e => {
@@ -831,24 +863,25 @@ form.addEventListener("submit", e => {
   const nombre = form.nombre.value.trim(), email = form.email.value.trim(), tel = form.telefono.value.trim();
   if (nombre.length < 2) return error.textContent = "Escribe tu nombre";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return error.textContent = "Revisa el correo, parece que no es válido";
-  if (tel.replace(/\D/g, "").length < 9) return error.textContent = "Escribe tu número completo";
+  if (tel.replace(/\D/g, "").length < 7) return error.textContent = "Escribe tu número completo";
   if (!document.getElementById("f-consent").checked) return error.textContent = "Necesitamos que aceptes la política de privacidad";
   error.textContent = "";
 
   const telefono = normalizarTelefono(tel);
-  const lead = {nombre: nombre.split(" ")[0], nombreCompleto: nombre, email, telefono};
+  const [paisNombre, codigoPais] = paisElegido();
+  const lead = {nombre: nombre.split(" ")[0], nombreCompleto: nombre, email, telefono, pais: paisNombre, codigoPais};
   ponerCookie("aa_lead", JSON.stringify(lead), 30);   // la clase lo lee y no vuelve a pedir los datos
   guardar("aa_lead", lead);
 
   if (pixelListo) {
     const [fn, ...ln] = nombre.toLowerCase().split(/\s+/);
-    fbq("init", CONFIG.pixelMeta, {em: email.toLowerCase(), ph: telefono.replace(/\D/g, ""), fn, ln: ln.join(" "), country: "es"});
+    fbq("init", CONFIG.pixelMeta, {em: email.toLowerCase(), ph: telefono.replace(/\D/g, ""), fn, ln: ln.join(" "), country: codigoPais});
     fbq("track", "Lead");
   }
   if (CONFIG.ghlWebhook) {
     const [n, ...ap] = nombre.split(/\s+/);
     fetch(CONFIG.ghlWebhook, {method: "POST", headers: {"Content-Type": "application/json"}, keepalive: true,
-      body: JSON.stringify({evento: "lead_web", nombre: n, apellido: ap.join(" "), email, telefono, pais: "España",
+      body: JSON.stringify({evento: "lead_web", nombre: n, apellido: ap.join(" "), email, telefono, pais: lead.pais,
         pagina: location.href.split("?")[0], fecha: new Date().toISOString(),
         utm_source: "", utm_medium: "", utm_campaign: "", utm_content: "", utm_term: "", fbclid: "", ...utm})}).catch(() => {});
   }
