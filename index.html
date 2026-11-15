@@ -345,8 +345,6 @@
   </defs>
 </svg>
 
-<div class="aviso">🚀 Plazas limitadas: solo buscamos 3 personas más<span class="con-plazo"> · Cerramos plazas en <b class="cuenta-texto">2d 14h 00m</b></span></div>
-
 <header>
   <div class="wrap">
     <a class="marca" href="#inicio"><svg><use href="#logoA"/></svg>Adsense Academy</a>
@@ -377,16 +375,7 @@
       </div>
       <button class="btn abrir-form"><span class="tri"></span>Ver la clase gratuita</button>
       <div class="urgencia">
-        <p class="nota"><span class="punto"></span>Disponible hasta encontrar 3 personas más</p>
-        <div class="con-plazo">
-          <p class="cierre">Cerramos plazas en</p>
-          <div class="reloj" aria-label="Tiempo hasta el cierre de plazas">
-            <div><b class="r-d">2</b><small>días</small></div>
-            <div><b class="r-h">14</b><small>horas</small></div>
-            <div><b class="r-m">00</b><small>min</small></div>
-            <div><b class="r-s">00</b><small>seg</small></div>
-          </div>
-        </div>
+        <p class="nota">Clase gratuita · Acceso inmediato</p>
       </div>
     </div>
   </section>
@@ -520,17 +509,8 @@
           </div>
         </div>
         <div class="separa"></div>
-        <div class="con-plazo">
-          <p class="cierre">Cerramos plazas en</p>
-          <div class="reloj" aria-label="Tiempo hasta el cierre de plazas">
-            <div><b class="r-d">2</b><small>días</small></div>
-            <div><b class="r-h">14</b><small>horas</small></div>
-            <div><b class="r-m">00</b><small>min</small></div>
-            <div><b class="r-s">00</b><small>seg</small></div>
-          </div>
-        </div>
-        <button class="btn abrir-form"><span class="tri"></span>Ver la clase ahora</button>
-        <p class="nota"><span class="punto"></span>Disponible hasta encontrar 3 personas más</p>
+        <button class="btn abrir-form" style="margin-top:30px"><span class="tri"></span>Ver la clase ahora</button>
+        <p class="nota">Clase gratuita · Acceso inmediato</p>
       </div>
     </div>
   </section>
@@ -543,7 +523,7 @@
       <a href="legal.html#aviso">Aviso legal</a>
       <a href="legal.html#privacidad">Política de privacidad</a>
       <a href="legal.html#cookies">Política de cookies</a>
-      <a href="mailto:pol@adsenseacademy.es">Contacto</a>
+      <a href="contacto/">Contacto</a>
     </nav>
     <p>Adsense Academy es una formación independiente, no afiliada, patrocinada ni respaldada por Google LLC ni por Meta Platforms, Inc. Google AdSense es una marca registrada de Google LLC. Los resultados mostrados corresponden a casos concretos y no son una garantía de ingresos.</p>
     <p style="margin-top:12px">© <span id="anio"></span> Munne Digital LLC · adsenseacademy.es</p>
@@ -590,7 +570,6 @@ const CONFIG = {
   // Widget oficial de Trustpilot (TrustBox): pega aquí, entre las comillas invertidas, el código que te da
   // Trustpilot en business.trustpilot.com → Integraciones → TrustBox. Vacío = se muestra la opinión fija.
   trustbox: ``,
-  horasPlazo: 62,                 // "cerramos plazas en": 2 días y 14 horas desde la primera visita
   // País del WhatsApp: decide a qué clase va. España → clase de España; el resto (también EE. UU.) → clase de LATAM.
   // [nombre, código, prefijo, cifras del móvil]. Se preselecciona por la zona horaria del visitante.
   paises: [
@@ -774,24 +753,6 @@ CONFIG.videos.forEach(v => {
   };
   videos.appendChild(el);
 });
-
-/* ---------- "cerramos plazas en": cuenta atrás personal ---------- */
-// Empieza en la primera visita y se guarda: si vuelve mañana, le queda un día menos.
-let cierre = Number(leerCookie("aa_cierre") || leer("aa_cierre"));
-if (!cierre) cierre = Date.now() + CONFIG.horasPlazo * 3600e3;
-ponerCookie("aa_cierre", cierre, 60);
-guardar("aa_cierre", cierre);
-const dos = n => String(n).padStart(2, "0");
-function pintarReloj() {
-  const resto = cierre - Date.now();
-  if (resto <= 0) { document.body.classList.add("sin-plazo"); return false; }
-  const s = Math.floor(resto / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
-  const poner = (c, v) => document.querySelectorAll(c).forEach(e => e.textContent = v);
-  poner(".r-d", d); poner(".r-h", dos(h)); poner(".r-m", dos(m)); poner(".r-s", dos(s % 60));
-  document.querySelectorAll(".cuenta-texto").forEach(e => e.textContent = `${d}d ${dos(h)}h ${dos(m)}m ${dos(s % 60)}s`);
-  return true;
-}
-if (pintarReloj()) { const t = setInterval(() => pintarReloj() || clearInterval(t), 1000); }
 
 /* ---------- utm: se guardan y se pasan a la clase ---------- */
 const params = new URLSearchParams(location.search);
